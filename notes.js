@@ -28,7 +28,17 @@ const saveNotes = function (notes){
 }
 
 const removeNote = function (title){
-    console.log(title)
+    const notes = loadNotes()
+    const newNotesArr = notes.filter(function(removeNote){
+        return removeNote.title !== title
+    })
+
+    if(notes.length === newNotesArr.length){
+        console.log('the note titled: %s, does not exist', title)
+    } else {
+        saveNotes(newNotesArr)
+        console.log('note titled: %s, has been removed', title)
+    }
 }
 
 const loadNotes = function(){
