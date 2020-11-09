@@ -46,6 +46,15 @@ const listNotes = () => {
     notes.forEach(note => console.log(chalk.green(note.title)))
 }
 
+const readNote = (title) => {
+    const note = loadNotes().find(note => note.title === title)
+
+    if (note){
+        console.log(chalk.inverse(note.title))
+        console.log(note.body)
+    } else console.log(chalk.red('Error') + ' note not found')
+}
+
 const loadNotes = () => {
    try {
        const dataBuffer = fs.readFileSync('notes.json')
@@ -59,5 +68,6 @@ module.exports = {
     getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
-    listNotes: listNotes
+    listNotes: listNotes,
+    readNote: readNote
 }
