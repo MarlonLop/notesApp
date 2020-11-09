@@ -1,4 +1,5 @@
 const fs = require('fs')
+const chalk = require('chalk')
 
 const getNotes = function(){
     return 'Your notes...'
@@ -34,10 +35,10 @@ const removeNote = function (title){
     })
 
     if(notes.length === newNotesArr.length){
-        console.log('the note titled: %s, does not exist', title)
+        console.log('the note ' +  chalk.blue(title) + ' ' +chalk.bgRed('does not exist'))
     } else {
         saveNotes(newNotesArr)
-        console.log('note titled: %s, has been removed', title)
+        console.log('the note ' +chalk.blue(title) + ' ' + chalk.bgGreen('has been removed'))
     }
 }
 
