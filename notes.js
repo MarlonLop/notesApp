@@ -1,15 +1,13 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-const getNotes = function(){
+const getNotes = () => {
     return 'Your notes...'
 }
 
-const addNote = function (title, body){
+const addNote = (title, body) => {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter(function (note) {
-        return note.title === title
-    })
+    const duplicateNotes = notes.filter((note) => note.title === title)
     
     if(duplicateNotes.length === 0){
         notes.push({
@@ -17,22 +15,20 @@ const addNote = function (title, body){
             body: body
         })
         saveNotes(notes)
-        console.log('new note added')
+        console.log(chalk.bgGreen('new note added'))
     } else {
-        console.log('note title already in use')
+        console.log(chalk.bgRed('note title already in use'))
     }
     
 }
 
-const saveNotes = function (notes){
+const saveNotes = (notes) => {
     fs.writeFileSync('notes.json', JSON.stringify(notes))
 }
 
-const removeNote = function (title){
+const removeNote = (title) => {
     const notes = loadNotes()
-    const newNotesArr = notes.filter(function(removeNote){
-        return removeNote.title !== title
-    })
+    const newNotesArr = notes.filter((removeNote) => removeNote.title !== title)
 
     if(notes.length === newNotesArr.length){
         console.log('the note ' +  chalk.blue(title) + ' ' +chalk.bgRed('does not exist'))
