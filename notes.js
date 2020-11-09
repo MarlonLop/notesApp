@@ -1,10 +1,6 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-const getNotes = () => {
-    return 'Your notes...'
-}
-
 const addNote = (title, body) => {
     const notes = loadNotes()
     // const duplicateNotes = notes.filter((note) => note.title === title)
@@ -52,7 +48,9 @@ const readNote = (title) => {
     if (note){
         console.log(chalk.inverse(note.title))
         console.log(note.body)
-    } else console.log(chalk.red('Error') + ' note not found')
+    } else {
+        console.log(chalk.red('Error!') + ' note not found')
+    }
 }
 
 const loadNotes = () => {
